@@ -3,14 +3,14 @@ class Folder extends Application {
     constructor(relX, relY, relW, relH, title) {
         super(relX, relY, relW, relH, title);
         this.icons = [];
-        this.field = new Field(relX + 0.0025, relY + 0.03667, relW - 0.005, relH- 0.04);
+        this.field = new Field(relX + 0.0025, relY + 0.03667, relW - 0.005, relH - 0.04);
     }
 
     display() {
         super.display();
-        if(!this.isHidden) {
+        if (!this.isHidden) {
             this.field.display();
-            for(let i = 0; i < this.icons.length; i++) {
+            for (let i = this.icons.length - 1; i >= 0 ; i--) {
                 this.icons[i].display();
             }
         }
@@ -19,7 +19,7 @@ class Folder extends Application {
     move(dX, dY) {
         super.move(dX, dY);
         this.field.move(dX, dY);
-        for(let i = 0; i < this.icons.length; i++) {
+        for (let i = 0; i < this.icons.length; i++) {
             this.icons[i].move(dX, dY);
         }
     }
@@ -35,19 +35,19 @@ class Folder extends Application {
                 break;
             }
         }
-        for(let j = 1; j < this.icons.length; j++) {
+        for (let j = 1; j < this.icons.length; j++) {
             this.icons[j].clicked = false;
         }
         //send input to the icons if icon is clicked
-        if(this.icons.length > 0) this.icons[0].pressed();
+        if (this.icons.length > 0) this.icons[0].pressed();
     }
 
     dragged(dX, dY) {
         super.dragged(dX, dY);
-        if(this.icons.length > 0) {
+        if (this.icons.length > 0) {
             this.icons[0].dragged(dX, dY);
             //if dragged outside of the folder, move icon to the global icon array
-            if(this.icons[0].isDraggable && !this.field.isMouseOver()) {
+            if (this.icons[0].isDraggable && !this.field.isMouseOver()) {
                 this.icons[0].textColor = 255;
                 let tempIcon = this.icons[0];
                 this.icons.splice(0, 1);
@@ -63,6 +63,15 @@ class Folder extends Application {
     }
     doubleClicked() {
         super.doubleClicked();
-        if(this.icons.length > 0) this.icons[0].doubleClicked();
+        if (this.icons.length > 0) this.icons[0].doubleClicked();
+    }
+
+    contains(fileName) {
+        for(let i = 0; i < this.icons.length; i++) {
+            if(this.icons[i].name == fileName) {
+                return true;
+            }
+        }
+        return false;
     }
 }

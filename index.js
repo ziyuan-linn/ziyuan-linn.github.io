@@ -34,6 +34,9 @@ function preload() {
   unlock_01 = loadImage('assets/images/unlock_01.png');
   work_01 = loadImage('assets/images/work_01.png');
   clock_01 = loadImage('assets/images/clock_01.png');
+  message_01 = loadImage('assets/images/message_01.png');
+  frog_01 = loadImage('assets/images/frog_01.png');
+  frog_file_01 = loadImage('assets/images/frog_file_01.png');
 
   texts = loadJSON('texts.json');
 }
@@ -68,7 +71,7 @@ function draw() {
     case "game":
       game.display();
       //end the day if 288000ms passes //change the time here to speed up day change for debugging
-      if (time >= 288000) {
+      if (time >= 10000) {
         days++;
         gameState = "endOfDay"
         endOfDay = new EndOfDay();
