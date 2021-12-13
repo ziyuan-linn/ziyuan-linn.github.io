@@ -37,6 +37,9 @@ function preload() {
   message_01 = loadImage('assets/images/message_01.png');
   frog_01 = loadImage('assets/images/frog_01.png');
   frog_file_01 = loadImage('assets/images/frog_file_01.png');
+  work_adv_1 = loadImage('assets/images/work_adv_1.png');
+
+  end_of_free_trail = loadImage('assets/images/end_of_free_trail.png');
 
   texts = loadJSON('texts.json');
 }
@@ -76,11 +79,20 @@ function draw() {
         gameState = "endOfDay"
         endOfDay = new EndOfDay();
       }
+      if (days >= 5) {
+        gameState = "end";
+      }
       break;
 
     case "endOfDay":
       endOfDay.display();
       break;
+
+    case "end":
+      //free trial end
+      image(end_of_free_trail, width / 2, height / 2, width, height);
+      break;
+
   }
 }
 
