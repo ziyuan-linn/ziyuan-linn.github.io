@@ -74,7 +74,7 @@ function draw() {
     case "game":
       game.display();
       //end the day if 288000ms passes //change the time here to speed up day change for debugging
-      if (time >= 60000) {
+      if (time >= 288000) {
         days++;
         gameState = "endOfDay"
         endOfDay = new EndOfDay();
